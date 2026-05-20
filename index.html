@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Notas De Um Buscador</title>
+  <title>Notas de um Buscador</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+
+  <!-- ── BARRA DE PROGRESSO ── -->
+  <div class="progress-bar" id="progress-bar"></div>
 
   <!-- ── CAPA ── -->
   <div class="cover">
@@ -25,9 +26,25 @@
 
   <!-- ── NAVEGAÇÃO ── -->
   <nav class="nav">
-    <span class="nav__brand">NOTAS DE UM BUSCADOR</span>
-    <ul class="nav__links" id="nav-links"></ul>
+    <span class="nav__brand" id="nav-brand"></span>
+    <div class="nav__controls">
+      <div class="font-controls">
+        <button class="font-btn" id="font-down">A−</button>
+        <button class="font-btn" id="font-up">A+</button>
+      </div>
+      <button class="nav__menu-btn" id="menu-btn">☰ Índice</button>
+    </div>
   </nav>
+
+  <!-- ── ÍNDICE ── -->
+  <div class="toc-overlay" id="toc-overlay"></div>
+  <aside class="toc" id="toc">
+    <div class="toc__header">
+      <span class="label">ÍNDICE</span>
+      <button class="toc__close" id="toc-close">✕</button>
+    </div>
+    <nav class="toc__nav" id="toc-nav"></nav>
+  </aside>
 
   <!-- ── PREFÁCIO ── -->
   <section class="preface" id="prefacio">
@@ -47,10 +64,12 @@
     <cite id="final-fonte"></cite>
   </footer>
 
+  <!-- ── BOTÃO VOLTAR AO TOPO ── -->
+  <button class="back-top" id="back-top" title="Voltar ao topo">↑</button>
+
   <!-- ── DADOS + APP ── -->
   <script src="conteudo.js"></script>
   <script src="app.js"></script>
 
 </body>
-
 </html>
