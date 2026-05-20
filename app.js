@@ -164,12 +164,31 @@ function iniciarFontControls() {
 // ── SCROLL REVEAL ───────────────────────
 function iniciarScrollReveal() {
   var chapters = document.querySelectorAll('.chapter');
+
+  // Se o browser não suporta IntersectionObserver, mostra tudo
+  if (!('IntersectionObserver' in window)) {
+    chapters.forEach(function(ch) { ch.classList.add('visible'); });
+    return;
+  }
+
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
-      if (e.isIntersecting) e.target.classList.add('visible');
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
     });
-  }, { threshold: 0.06 });
-  chapters.forEach(function(ch) { observer.observe(ch); });
+  }, { threshold: 0, rootMargin: '0px 0px -50px 0px' });
+
+  chapters.forEach(function(ch) {
+    // Verifica se já está visível no viewport ao carregar
+    var rect = ch.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      ch.classList.add('visible');
+    } else {
+      observer.observe(ch);
+    }
+  });
 }
 
 // ── UTIL ────────────────────────────────
